@@ -42,7 +42,7 @@ public class HelloControllerTest extends MVCIntegrationTest {
 		String body = "{}";
 		mockMvc.perform(post("/hello").content(body)
 		                              .contentType(MediaType.APPLICATION_JSON))
-		       .andExpect(status().isUnprocessableEntity())
+		       .andExpect(status().isBadRequest())
 		       .andExpect(jsonPath("$.validationErrors", hasSize(1)))
 		       .andExpect(jsonPath("$.validationErrors[*].field", contains("message")));
 	}
@@ -52,7 +52,7 @@ public class HelloControllerTest extends MVCIntegrationTest {
 		String body = "{ \"tacos\":\"value\" }}";
 		mockMvc.perform(post("/hello").content(body).contentType(MediaType.APPLICATION_JSON))
 		       .andExpect(status().isBadRequest())
-		       .andExpect(jsonPath("$.message", containsString(GlobalControllerAdvice.MESSAGE_UNRECOGNIZED_PROPERTY)));
+		       .andExpect(jsonPath("$.message", containsString(GlobalControllerAdvice.MESSAGE_BAD_REQUEST)));
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class HelloControllerTest extends MVCIntegrationTest {
 
 		mockMvc.perform(post("/hello").content(body)
 		                              .contentType(MediaType.APPLICATION_JSON))
-		       .andExpect(status().isUnprocessableEntity())
+		       .andExpect(status().isBadRequest())
 		       .andExpect(jsonPath("$.validationErrors", hasSize(1)))
 		       .andExpect(jsonPath("$.validationErrors[*].field", contains("message")));
 	}
