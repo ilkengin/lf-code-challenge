@@ -5,6 +5,8 @@ import { MaterialModule } from '../material.module';
 import { CommonModule } from '@angular/common';
 import { HelloDetailsComponent } from './hello-details/hello-details.component';
 import { HelloCreateDialogComponent } from './hello-create-dialog/hello-create-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     HelloListComponent,
@@ -14,7 +16,9 @@ import { HelloCreateDialogComponent } from './hello-create-dialog/hello-create-d
   imports: [
     CommonModule,
     HelloRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule,
+    ReactiveFormsModule
   ],
   providers: []
 })
