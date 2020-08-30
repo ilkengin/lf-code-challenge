@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Greeting } from '../models/greeting.model';
 
@@ -26,5 +26,20 @@ export class HelloAccessorService implements OnInit {
 
     getMessage(userId: string): Observable<Greeting> {
         return this.http.get<Greeting>(this.baseUrl + userId);
+    }
+
+    create(message: string): Observable<Greeting> {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json'
+            })
+        };
+        
+        const greeting: Greeting = {
+            id: null,
+            message
+        };
+
+        return this.http.post<Greeting>(this.baseUrl, greeting, httpOptions);
     }
 }
