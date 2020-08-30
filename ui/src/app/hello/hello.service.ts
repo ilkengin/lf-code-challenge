@@ -9,6 +9,8 @@ import { Greeting } from '../core/models/greeting.model';
 export class HelloService implements OnInit {
 
     private changedSubject: Subject<Greeting> = new Subject(); 
+    private detailsChangedSubject: Subject<boolean> = new Subject(); 
+
 
     constructor(private helloAccessorService:HelloAccessorService) {}
 
@@ -37,7 +39,23 @@ export class HelloService implements OnInit {
         );
     }
 
+    updateGreeting(id: string, newMessage: string): Observable<Greeting> {
+        return this.helloAccessorService.updateGreeting(id, newMessage);
+    }
+
     public changed(): Observable<Greeting> {
         return this.changedSubject.asObservable();
+    }
+
+    public detailsStatusChanged(): Observable<boolean> {
+        return this.detailsChangedSubject.asObservable();
+    }
+
+    public detailsOpened(): void {
+        this.detailsChangedSubject.next(true);
+    }
+
+    public detailsClosed(): void {
+        this.detailsChangedSubject.next(false);
     }
 }

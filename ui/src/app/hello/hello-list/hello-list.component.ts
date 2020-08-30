@@ -21,6 +21,7 @@ export class HelloListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.helloService.detailsClosed();
     this.helloService.getAllMessages().subscribe(greetings => {
       this.greetings = greetings;
     });

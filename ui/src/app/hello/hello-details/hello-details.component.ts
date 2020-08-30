@@ -23,6 +23,7 @@ export class HelloDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private helloService: HelloService) {}
 
   ngOnInit(): void {
+    this.helloService.detailsOpened();
     const id = this.route.snapshot.paramMap.get('id');
     this.helloService.getMessage(id).subscribe(greeting => {
       this.greeting = greeting;
@@ -37,5 +38,11 @@ export class HelloDetailsComponent implements OnInit {
   }
 
   save() {
+    this.helloService.updateGreeting(this.greeting.id, this.greetingForm.get('message').value).subscribe(greeting => {
+      this.greeting = greeting;
+      this.greetingForm.reset();
+      this.greetingForm.get('message').setValue(this.greeting.message);
+      this.isEditing = !this.isEditing;
+    });
   }
 }

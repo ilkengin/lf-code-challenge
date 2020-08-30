@@ -1,7 +1,7 @@
 <mat-toolbar>
     <div class="menuWrapper" fxLayout="row" fxLayoutAlign="space-between center">
         <span>Hello World</span>
-        <button mat-icon-button (click)="openCreateDialog()">
+        <button mat-icon-button (click)="openCreateDialog()" *ngIf="showAddbutton">
             <mat-icon>add</mat-icon>
           </button>
     </div>
