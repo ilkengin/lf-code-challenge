@@ -13,7 +13,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class HelloDetailsComponent implements OnInit {
   greeting: Greeting;
   isEditing = false;
-  
+  canEdit = true;
+
   matcher = new GeneralErrorStateMatcher();
 
   greetingForm = new FormGroup({
@@ -29,6 +30,9 @@ export class HelloDetailsComponent implements OnInit {
       this.greeting = greeting;
       this.greetingForm.get('message').setValue(greeting.message);
     });
+    if (id === 'default') {
+      this.canEdit = false;
+    }
   }
 
   cancel() {

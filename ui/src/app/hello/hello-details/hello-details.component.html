@@ -1,13 +1,13 @@
 <div class="cardContainer" fxLayout="column" fxLayoutAlign="center center">
   <mat-card  *ngIf="greeting">
     <div class="generalContainer" fxLayout="column" fxLayoutAlign="start strecth">
-      <div class="editButtonContainer">
+      <div class="editButtonContainer" *ngIf="canEdit">
         <button class="editButton" mat-icon-button (click)="isEditing = !isEditing">
           <mat-icon>edit</mat-icon>
         </button>
       </div>
       <div class="message" *ngIf="!isEditing" fxFlex fxLayout="column" fxLayoutAlign="center center">{{greeting.message}}</div>
-      <div class="formContainer" *ngIf="isEditing" fxFlex fxLayout="column" fxLayoutAlign="center center">
+      <div class="formContainer" *ngIf="canEdit && isEditing" fxFlex fxLayout="column" fxLayoutAlign="center center">
         <form [formGroup]="greetingForm" (ngSubmit)="save()">
           <mat-form-field class="example-full-width">
             <mat-label>Message</mat-label>
