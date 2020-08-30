@@ -1,16 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HelloService } from '../hello.service';
-import { FormGroup, FormControl, Validators, FormGroupDirective, NgForm } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import { GeneralErrorStateMatcher } from '../general-error-state-matcher';
 
 @Component({
   selector: 'app-hello-ccreate-dialog',
@@ -19,7 +11,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class HelloCreateDialogComponent implements OnInit {
 
-  matcher = new MyErrorStateMatcher();
+  matcher = new GeneralErrorStateMatcher();
 
   greetingForm = new FormGroup({
     message: new FormControl('', Validators.required),
