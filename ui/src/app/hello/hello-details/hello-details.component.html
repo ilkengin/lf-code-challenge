@@ -1,3 +1,28 @@
-<div class="cardContainer">
-  <mat-card  *ngIf="greeting">{{greeting.message}}</mat-card>
+<div class="cardContainer" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card  *ngIf="greeting">
+    <div class="generalContainer" fxLayout="column" fxLayoutAlign="start strecth">
+      <div class="editButtonContainer">
+        <button class="editButton" mat-icon-button (click)="isEditing = !isEditing">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+      <div class="message" *ngIf="!isEditing" fxFlex fxLayout="column" fxLayoutAlign="center center">{{greeting.message}}</div>
+      <div class="formContainer" *ngIf="isEditing" fxFlex fxLayout="column" fxLayoutAlign="center center">
+        <form [formGroup]="greetingForm" (ngSubmit)="save()">
+          <mat-form-field class="example-full-width">
+            <mat-label>Message</mat-label>
+            <input matInput formControlName="message" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="greetingForm.get('message').hasError('required')">
+              Message is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <button (click)="cancel()" type="button" mat-raised-button>Cancel</button>
+            <button type="submit" mat-raised-button color="primary" fxFlexOffset="15">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </mat-card>
 </div>
