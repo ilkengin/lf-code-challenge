@@ -53,7 +53,7 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler imple
 
 	public static final String MESSAGE_UNRECOGNIZED_PROPERTY = "Unrecognized property: ";
 
-	private static final String MESSAGE_BAD_REQUEST = "Client error: server will not process request";
+	public static final String MESSAGE_BAD_REQUEST = "Client error: server will not process request";
 
 	private static final ApiMessage GENERIC_NOT_FOUND_MESSAGE = new ApiMessage("Entity not found.");
 
