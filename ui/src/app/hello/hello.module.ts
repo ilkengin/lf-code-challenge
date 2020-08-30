@@ -4,11 +4,12 @@ import { HelloRoutingModule } from './hello-routing.module';
 import { MaterialModule } from '../material.module';
 import { CommonModule } from '@angular/common';
 import { HelloDetailsComponent } from './hello-details/hello-details.component';
-
+import { HelloCreateDialogComponent } from './hello-create-dialog/hello-create-dialog.component';
 @NgModule({
   declarations: [
     HelloListComponent,
-    HelloDetailsComponent
+    HelloDetailsComponent,
+    HelloCreateDialogComponent
   ],
   imports: [
     CommonModule,
