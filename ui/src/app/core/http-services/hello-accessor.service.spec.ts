@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HelloAccessorService } from './hello-accessor.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('HelloAccessorService', () => {
 
@@ -7,6 +8,9 @@ describe('HelloAccessorService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({ 
+            imports: [
+              HttpClientTestingModule
+            ],
             providers: [
                 HelloAccessorService
             ]
