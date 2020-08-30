@@ -1,21 +1,21 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HelloDetailsComponent } from './hello-details.component';
+import { HelloCreateDialogComponent } from './hello-create-dialog.component';
 
-describe('HelloDetailsComponent', () => {
+describe('HelloCreateDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
       ],
       declarations: [
-        HelloDetailsComponent
+        HelloCreateDialogComponent
       ],
     }).compileComponents();
   }));
 
   it('should create the HelloDetailsComponent', () => {
-    const fixture = TestBed.createComponent(HelloDetailsComponent);
+    const fixture = TestBed.createComponent(HelloCreateDialogComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
