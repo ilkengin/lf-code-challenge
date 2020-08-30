@@ -1,14 +1,19 @@
 package com.labforward.api.hello.controller;
 
+import java.util.List;
+
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.labforward.api.core.exception.ResourceNotFoundException;
 import com.labforward.api.hello.domain.Greeting;
 import com.labforward.api.hello.service.HelloWorldService;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
@@ -21,21 +26,32 @@ public class HelloController {
 		this.helloWorldService = helloWorldService;
 	}
 
-	@RequestMapping(value = "/hello", method = RequestMethod.GET)
+	@GetMapping("/hello")
+	@ResponseBody
+	public List<Greeting> allHello() {
+		return helloWorldService.getAllGreetings();
+	}
+	
+	@GetMapping("/hello/default")
 	@ResponseBody
 	public Greeting helloWorld() {
 		return getHello(HelloWorldService.DEFAULT_ID);
 	}
 
-	@RequestMapping(value = "/hello/{id}", method = RequestMethod.GET)
+	@GetMapping("/hello/{id}")
 	@ResponseBody
 	public Greeting getHello(@PathVariable String id) {
 		return helloWorldService.getGreeting(id)
 		                        .orElseThrow(() -> new ResourceNotFoundException(GREETING_NOT_FOUND));
 	}
 
-	@RequestMapping(value = "/hello", method = RequestMethod.POST)
-	public Greeting createGreeting(@RequestBody Greeting request) {
+	@PostMapping("/hello")
+	public Greeting createGreeting(@Validated @RequestBody Greeting request) {
 		return helloWorldService.createGreeting(request);
+	}
+	
+	@PutMapping("/hello/{id}")
+	public Greeting updateGreeting(@PathVariable String id,@Validated @RequestBody Greeting request) {
+		return helloWorldService.updateGreeting(id, request);
 	}
 }
