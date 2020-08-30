@@ -1,7 +1,7 @@
 <mat-toolbar>
-    <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="menuWrapper" fxLayout="row" fxLayoutAlign="space-between center">
         <span>Hello World</span>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="openCreateDialog()">
             <mat-icon>add</mat-icon>
           </button>
     </div>
