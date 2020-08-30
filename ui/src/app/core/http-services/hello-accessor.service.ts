@@ -34,12 +34,26 @@ export class HelloAccessorService implements OnInit {
                 'Content-Type':  'application/json'
             })
         };
-        
+
         const greeting: Greeting = {
             id: null,
             message
         };
 
         return this.http.post<Greeting>(this.baseUrl, greeting, httpOptions);
+    }
+
+    updateGreeting(id: string, newMessage: string): Observable<Greeting> {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json'
+            })
+        };
+
+        const greeting: Greeting = {
+            id: id,
+            message: newMessage
+        };
+        return this.http.put<Greeting>(this.baseUrl + id, greeting, httpOptions);
     }
 }
