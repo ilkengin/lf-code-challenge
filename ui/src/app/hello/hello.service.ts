@@ -6,6 +6,7 @@ import { Greeting } from '../core/models/greeting.model';
     providedIn: 'root'
 })
 export class HelloService implements OnInit {
+
     constructor(private helloAccessorService:HelloAccessorService) {}
 
     ngOnInit() {
@@ -22,5 +23,9 @@ export class HelloService implements OnInit {
 
     public getMessage(id: string): Observable<Greeting> {
         return this.helloAccessorService.getMessage(id);
+    }
+
+    public create(message: string) {
+        return this.helloAccessorService.create(message);
     }
 }
