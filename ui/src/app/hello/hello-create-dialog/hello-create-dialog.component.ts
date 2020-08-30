@@ -31,9 +31,6 @@ export class HelloCreateDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void { 
-    this.greetingForm.statusChanges.subscribe(_ => {
-      console.log(this.greetingForm.errors);
-    })
   }
 
   cancel() {
